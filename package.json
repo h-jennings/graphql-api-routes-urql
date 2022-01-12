@@ -2,16 +2,19 @@
   "name": "graphql-api-routes-urql",
   "private": true,
   "scripts": {
-    "dev": "next dev",
+    "dev": "NODE_OPTIONS='--inspect' next dev",
     "build": "next build",
     "start": "next start",
     "lint": "next lint"
   },
   "dependencies": {
+    "graphql": "^16.2.0",
+    "graphql-request": "^3.7.0",
     "next": "12.0.8",
     "next-urql": "^3.3.2",
     "react": "17.0.2",
     "react-dom": "17.0.2",
+    "react-is": "^17.0.2",
     "urql": "^2.0.6"
   },
   "devDependencies": {

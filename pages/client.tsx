@@ -12,10 +12,11 @@ const QUERY = gql`
   }
 `;
 
-// Urql is handling SSR for us (the default)
-const Home: NextPage<WithUrqlProps> = () => {
+// Fetching data from the client via api route
+const Client: NextPage<WithUrqlProps> = () => {
   const [result] = useQuery({ query: QUERY });
   const { data } = result;
+  React.useEffect(() => void console.log(data), [data]);
 
   return (
     <div>
@@ -24,4 +25,4 @@ const Home: NextPage<WithUrqlProps> = () => {
   );
 };
 
-export default withPokemonGraphQL(Home);
+export default withPokemonGraphQL(Client, false, true);
