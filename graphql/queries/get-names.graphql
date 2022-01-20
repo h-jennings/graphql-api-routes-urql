@@ -1,0 +1,5 @@
+query GetNames {
+  pokemons(limit: 50) {
+    name
+  }
+}

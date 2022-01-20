@@ -1,20 +1,13 @@
 import type { NextPage } from 'next';
 import { WithUrqlProps } from 'next-urql';
 import React from 'react';
-import { gql, useQuery } from 'urql';
+import { useQuery } from 'urql';
+import { GetNamesDocument } from '../graphql/generated/types.generated';
 import { withPokemonGraphQL } from '../graphql/urql/urql';
-
-const QUERY = gql`
-  {
-    pokemons(limit: 50) {
-      name
-    }
-  }
-`;
 
 // Fetching data from the client via api route
 const Client: NextPage<WithUrqlProps> = () => {
-  const [result] = useQuery({ query: QUERY });
+  const [result] = useQuery({ query: GetNamesDocument });
   const { data } = result;
   React.useEffect(() => void console.log(data), [data]);
 

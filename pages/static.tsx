@@ -5,23 +5,14 @@ import {
   cacheExchange,
   dedupExchange,
   fetchExchange,
-  gql,
   ssrExchange,
   useQuery,
 } from 'urql';
+import { GetNamesDocument } from '../graphql/generated/types.generated';
 import { withPokemonGraphQL } from '../graphql/urql/urql';
 
-const QUERY = gql`
-  {
-    pokemons(limit: 50) {
-      id
-      name
-    }
-  }
-`;
-
 const Static: NextPage<WithUrqlProps> = () => {
-  const [result] = useQuery({ query: QUERY });
+  const [result] = useQuery({ query: GetNamesDocument });
   const { data } = result;
 
   return (
@@ -43,7 +34,7 @@ export const getStaticProps = async () => {
 
   // This query is used to populate the cache for the query
   // used on this page.
-  await client?.query(QUERY).toPromise();
+  await client?.query(GetNamesDocument).toPromise();
 
   return {
     props: {
